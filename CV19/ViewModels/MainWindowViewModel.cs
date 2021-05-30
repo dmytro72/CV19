@@ -107,7 +107,7 @@ namespace CV19.ViewModels
                 const double to_rad = Math.PI / 180;
                 double y = Math.Sin(x * to_rad);
 
-                data_points.Add(new DataPoint { XValue = x , Yvalue = y }); 
+                data_points.Add(new DataPoint { XValue = x , YValue = y }); 
             }
 
             TestDataPoints = data_points;

@@ -4,6 +4,6 @@
     {
         public double XValue { get; set; }
 
-        public double Yvalue { get; set; }
+        public double YValue { get; set; }
     }
 }
