@@ -10,8 +10,26 @@ namespace CV19.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+        #region SelectedPageIndex
+
+        /// <summary>
+        /// Taken Tab number
+        /// </summary>
+        private int _SelectedPageIndex;
+
+        /// <summary>
+        /// Taken Tab number
+        /// </summary>
+        public int SelectedPageIndex
+        {
+            get => _SelectedPageIndex;
+            set => Set(ref _SelectedPageIndex, value);
+        }
+
+        #endregion
+
         #region TestDataPoints
-        
+
         /// <summary>
         /// Test data for plot
         /// </summary>
@@ -90,6 +108,26 @@ namespace CV19.ViewModels
 
         #endregion
 
+        #region ChangeTabIndexCommand
+
+        public ICommand ChangeTabIndexCommand
+        {
+            get;
+        }
+
+        private bool CanChangeTabIndexCommandExecute(object p) => _SelectedPageIndex >= 0;
+
+        private void OnChangeTabIndexCommandExecuted(object p)
+        {
+            if (p is null)
+            {
+                return;
+            }
+            SelectedPageIndex += Convert.ToInt32(p);
+        }
+
+        #endregion
+
         #endregion
 
         public MainWindowViewModel()
@@ -98,6 +136,7 @@ namespace CV19.ViewModels
             #region Commands
 
             CloseAppCommand = new LambdaCommand(OnCloseAppCommandExecuted, CanCloseAppCommandExecute);
+            ChangeTabIndexCommand = new LambdaCommand(OnChangeTabIndexCommandExecuted, CanChangeTabIndexCommandExecute);
 
             #endregion
 
